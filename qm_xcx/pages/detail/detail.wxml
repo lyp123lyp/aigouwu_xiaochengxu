@@ -1,0 +1,41 @@
+<!-- 商品详情页的轮播 -->
+<view class="goods-swiper swiper">
+  <swiper circular="true">
+    <block wx:for="{{imgUrls}}" wx:key="item">
+      <swiper-item class="W100">
+        <image src="{{host}}{{item}}" class="slide-image" mode="widthFix" lazy-load="true" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="index-picture">1/4</view>
+</view>
+<view class="goods-title pd10">
+  <view class="disc">
+    <text class="zhekou">折扣</text>休闲胸包斜挎包防水单肩包旅行挎包背包
+  </view>
+  <view class="shareColl">
+    <view class="collection"></view>
+    <view class="shares">
+      <image src="{{host}}/picture/share.png" mode="widthFix">
+      </image>
+       <text>分享</text>
+    </view>
+  </view>
+</view>
+<!-- 商品价格 -->
+<view class="goods-price pd10">
+  <view class="p-price">¥64.00<text class="zhekou">7.6折</text></view>
+  <view class="p-market"></view>
+</view>
+<!-- 运费信息 -->
+<view class="goods-attr pd10 pdt0">运费信息<text class="hlike">包邮</text></view>
+<view class="showCount"></view>
+<!-- 用户评价 -->
+<view class="goods-evaluation">
+</view>
+<!-- 图文详情 -->
+<view class="goods-details"></view>
+<!-- 底部加入购物车 -->
+<view class="goods-add-cart"></view>
+<!-- 商品数量选择 -->
+<view class="goods-add-count"></view>

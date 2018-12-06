@@ -1,0 +1,186 @@
+<view class="">
+  <!-- 顶部搜索框 -->
+  <view class="search" bindtap="bindButtonTap">
+    <view class="section">
+      <!-- <image src="{{host}}/picture/sousuo.png"></image> -->
+      <icon type="search" size="20" />
+      <input placeholder="商品搜索" focus="{{focus}}" confirm-type="search" />
+    </view>
+  </view>
+  <view class="scroll">
+    <scroll-view class="meal-time-list" scroll-x>
+      <view wx:for="{{navTitleList}}" class="meal-time-item" data-index="{{index}}" bindtap="selectMeal" data-id="{{item}}">{{item}}</view>
+    </scroll-view>
+  </view>
+  <!-- 轮播图 -->
+  <view class="slide">
+    <swiper indicator-dots="true" autoplay="true" interval="2000" duration="500" circular="true">
+      <block wx:for="{{imgUrls}}" wx:key="item">
+        <swiper-item class="W100">
+          <image src="{{host}}{{item}}" class="slide-image" mode="widthFix" lazy-load="true"/>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class="vipBox">
+    <view wx:for="{{vipList}}" class="vipList" wx:key="item">
+      <view class="group">
+        <image src="{{host}}{{item.img_url}}"></image>
+        <text>{{item.text}}</text>
+      </view>
+    </view>
+  </view>
+  <!-- 爱无处不再 -->
+  <view class="contain m15">
+    <view class="loveBox bgWhite">
+      <view class="loveTitle">
+        <image src="{{host}}/picture/tu10.png" mode="widthFix" lazy-load="true"></image>
+      </view>
+      <view class="clear">
+        <block wx:for="{{loveList}}" wx:key="index">
+          <view class="loveList  loveList{{index}} loveli2">
+            <navigator url="/pages/index/index">
+              <image src="{{host}}{{item.img_url}}" mode="aspectFill" lazy-load="true"></image>
+              <text class="ptn">{{item.text}}</text>
+            </navigator>
+          </view>
+        </block>
+
+      </view>
+    </view>
+    <view class="m8 W100">
+      <image src="{{host}}/picture/b22g.gif" mode="widthFix" lazy-load="true"></image>
+    </view>
+  </view>
+  <view class="bgWhite">
+    <!-- vip精品 -->
+    <view class="vipShop contain">
+      <text class="title">vip精品</text>
+      <navigator class="more">
+        查看更多>>
+      </navigator>
+    </view>
+    <view class="W100 m8">
+      <navigator class="">
+        <image src="{{host}}/picture/5b752e66535bd.jpg" mode="widthFix" lazy-load="true"></image>
+      </navigator>
+    </view>
+    <view class="W100 m8">
+      <navigator class="">
+        <image src="{{host}}/picture/lunbo1.jpg" mode="widthFix" lazy-load="true"></image>
+      </navigator>
+    </view>
+  </view>
+  <!-- 发现精品 -->
+  <view class="fxjp">
+    <view class="vipShop contain m10">
+      <text class="title">发现精品</text>
+    </view>
+    <view class="clear  contain">
+      <view wx:for="{{jpList}}" class="vipList loveList loveli2 mb8" wx:key="item">
+        <view class="jp-group">
+          <image src="{{host}}/picture/{{item.img_url}}"></image>
+          <text class="ptn ptnb">{{item.text}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="flex contain">
+      <view class="W100 ttjz">
+        <navigator>
+          <image src="{{host}}/picture/1029(18).png" mode="widthFix" lazy-load="ture"></image>
+          <text class="ptn">头条生活</text>
+        </navigator>
+      </view>
+      <view class="W100 ttjz">
+        <navigator>
+          <image src="{{host}}/picture/1029(19).png" mode="widthFix" lazy-load="true"></image>
+          <text class="ptn">精致生后</text>
+        </navigator>
+      </view>
+    </view>
+
+  </view>
+  <!-- 微商馆 -->
+  <view class="wsg m10 contain">
+    <view class="vipShop m10">
+      <text class="title">微商专区</text>
+    </view>
+    <view class="jump flex plr10">
+      <view class="wsg-group W100">
+        <navigator>
+          <view>
+            <image src="{{host}}/picture/5a093692f0974.jpg" mode="widthFix" lazy-load="true"></image>
+          </view>
+          <view class="title webkitBox">【美丽誓颜碳洗面膜】深层清洁 补水美白 收缩毛孔 控油 去黑头 男女正品 </view>
+          <text class="price">￥198.00</text>
+        </navigator>
+      </view>
+      <view class="wsg-group W100">
+        <navigator>
+          <view>
+            <image src="{{host}}/picture/5a093692f0974.jpg" mode="widthFix" lazy-load="true"></image>
+          </view>
+          <view class="title webkitBox">【美丽誓颜碳洗面膜】深层清洁 补水美白 收缩毛孔 控油 去黑头 男女正品 </view>
+          <text class="price">￥198.00</text>
+        </navigator>
+      </view>
+      <view class="wsg-group W100">
+        <navigator>
+          <view>
+            <image src="{{host}}/picture/5a093692f0974.jpg" mode="widthFix" lazy-load="true"></image>
+          </view>
+          <view class="title webkitBox">【美丽誓颜碳洗面膜】深层清洁 补水美白 收缩毛孔 控油 去黑头 男女正品 </view>
+          <text class="price">￥198.00</text>
+        </navigator>
+      </view>
+    </view>
+    <view class="more mt10">
+      <navigator url="/pages/index/index">查看更多微商>></navigator>
+    </view>
+  </view>
+</view>
+<!-- 热门精选 -->
+<view class="rmjx">
+  <view class="vipShop  p10 bgWhite">
+    <text class="title">热门精选</text>
+  </view>
+  <view class="clear contain  bgWhite" id="rmjxList">
+    <view class="list-group W100">
+      <navigator>
+        <image src="{{host}}/picture/5c04f1f3aa296.jpeg" mode="widthFix" lazy-load="true"></image>
+        <view class="zhekou">折扣</view>
+        <view class="webkitBox">男士兔绒防寒保暖休闲针织帽</view>
+        <view class="price flex">
+          <text class="newsPrice">￥39.00 </text>
+          <text class="oldPrice">￥52.00</text>
+        </view>
+      </navigator>
+    </view>
+    <view class="list-group W100 bgWhite">
+      <navigator>
+        <image src="{{host}}/picture/5c04f1f3aa296.jpeg" mode="widthFix" lazy-load="true"></image>
+        <view class="zhekou">折扣</view>
+        <view class="webkitBox">男士兔绒防寒保暖休闲针织帽</view>
+        <view class="price flex">
+          <text class="newsPrice">￥39.00 </text>
+          <text class="oldPrice">￥52.00</text>
+        </view>
+      </navigator>
+    </view>
+    <view class="list-group W100 bgWhite">
+      <navigator>
+        <image src="{{host}}/picture/5c04f1f3aa296.jpeg" mode="widthFix" lazy-load="true"></image>
+        <view class="zhekou">折扣</view>
+        <view class="webkitBox">男士兔绒防寒保暖休闲针织帽</view>
+        <view class="price flex">
+          <text class="newsPrice">￥39.00 </text>
+          <text class="oldPrice">￥52.00</text>
+        </view>
+      </navigator>
+    </view>
+  </view>
+  <!-- 我是有底线的 -->
+  <view class="goMore">
+    <button>加载更多>></button>
+  </view>
+</view>

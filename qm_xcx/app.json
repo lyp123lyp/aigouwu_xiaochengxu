@@ -1,0 +1,14 @@
+{
+  "pages": [
+    "pages/detail/detail",
+    "pages/cart/cart",
+    "pages/assortment/assortment",
+    "pages/index/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "爱购物",
+    "navigationBarTextStyle": "black"
+  }
+}

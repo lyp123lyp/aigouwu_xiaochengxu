@@ -1,0 +1,41 @@
+<view class="bgWhite cartList">
+  <view class="cartListGroup">
+    <view class="checkbox">
+      <checkbox-group bindchange="checkboxChange" data-index="{{index}}" data-checks="{{item.checks}}">
+        <checkbox data-index="{{index}}" id="2" value="{{item.name}}" checked="{{item.checks}}" />
+      </checkbox-group>
+    </view>
+    <view class="img">
+      <image src="{{host}}/picture/5c04ef116e12f.jpeg" mode="widthFix" lazy-load="true"> </image>
+    </view>
+    <view class="detailDisc">
+      <view class="title">女士羊毛纯色贝雷帽潮森系帽子</view>
+      <view class="disc">版本类型:<text>MZ06 焦糖色.可调节.</text>
+      </view>
+      <view class="price">¥35.00</view>
+      <view class="count">
+        <button class="reduce">-</button><input>1</input><button class="add">+</button>
+        <view  class="delete">
+                <image src="{{host}}/images/delete.png" mode="widthFix"></image>
+        </view>
+
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 底部结算部分 -->
+  <view class="pay">
+    <view class="checkAll">
+            <checkbox-group bindchange="checkboxChange" data-index="{{index}}" data-checks="{{item.checks}}">
+        <checkbox data-index="{{index}}" id="2" value="{{item.name}}" checked="{{item.checks}}" />
+         <text>全选</text>
+      </checkbox-group> 
+    </view>
+    <view class="tatol">
+      <view class="tatolMoney">合计：¥35.00</view>
+      <view class="alt">不含运费</view>
+    </view>
+    <view class="jiesuan">
+      <button class="submit">马上结算</button>
+    </view>
+  </view>

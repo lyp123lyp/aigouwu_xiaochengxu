@@ -1,0 +1,85 @@
+/* pages/detail/detail.wxss */
+page{
+  background-color: #f5f5f5;
+  padding-top: 10rpx;
+  font-size: 12px;
+}
+.goods-swiper{
+  position: relative;
+}
+.goods-swiper  swiper{
+  height: 704rpx;
+  
+}
+.goods-swiper .index-picture{
+  position: absolute;
+  bottom: 40rpx;
+  right:40rpx;
+  background-color: #bbb;
+  padding: 10rpx 20rpx;
+  text-align: center;
+  border-radius: 30rpx;
+  font-size: 14px;
+  color:#fff;
+  letter-spacing: 2px;
+}
+.pd10{
+    padding: 20rpx;
+}
+.goods-title{
+  font-size: 14px;
+    display:flex;
+}
+.goods-title .disc {
+  width: 65%;
+}
+.goods-price .zhekou,
+.goods-title .disc .zhekou {
+  background-color: #EC5151;
+  padding: 4rpx 15rpx;
+  color: #fff;
+  border-radius: 10px;
+  margin-right: 10rpx;
+}
+.goods-title  .shareColl{
+  width: 35%;
+}
+.goods-title  .shares{
+  width: 30%;
+  text-align: center;
+  margin-left: auto;
+  line-height: 50rpx;
+}
+.goods-title  .shares image{
+  width:46rpx;
+  display:block;
+  margin: 0 auto;
+}
+.goods-price .zhekou{
+ margin-left:100rpx;
+}
+.goods-price{
+  padding-top: 0;
+  font-size: 18px; 
+}
+.goods-price .p-price,.hlike{
+   color: #EC5151;
+}
+.goods-price .zhekou{
+  font-size: 14px;
+}
+.goods-attr{
+  font-size: 14px; 
+}
+.goods-attr .hlike{
+  margin-left: 20rpx;
+}
+.pdt0{
+  padding-top: 0;
+}
+
+.goods-price,
+.goods-title,
+.goods-title{
+    line-height: 46rpx;
+}

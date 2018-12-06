@@ -1,0 +1,345 @@
+/* pages/index/index.wxss */
+page{
+  color: #666;
+}
+
+.search {
+  padding: 5rpx 20rpx;
+}
+
+.section {
+  display: flex;
+  padding: 10rpx 30rpx;
+  height: 40rpx;
+  font-size: 14px;
+  border-radius: 10rpx;
+  background-color: #f5f5f5;
+  border: 1px solid #e0e0e0;
+}
+
+.section image, .section icon {
+  vertical-align: middle;
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 15rpx;
+}
+
+.section input {
+  margin-top: -5rpx;
+}
+/* 滑动导航条开始*/
+.scroll {
+  margin: 20rpx 0;
+  height: 60rpx;
+  font-size: 14px;
+  line-height:60rpx;
+  min-width: 750rxp;
+
+}
+
+.meal-time-list {
+  width: 100%;
+  height: 60rpx;
+  display: inline-block;
+  white-space: nowrap;
+ 
+}
+.meal-time-item:last-child{
+  margin-right: 0;
+}
+.meal-time-item {
+  width: 134rpx;
+  height:60rpx;
+  margin-right: 20rpx;
+  display: inline-block;
+  line-height: 60rpx;
+  vertical-align: middle;
+  text-align: center;
+}
+ 
+.selected-meal {
+  width: 20%;
+  height: 60rpx;
+  color: #1aae18;
+  border-bottom: 5rpx solid #1aae18;
+  display:inline-block;
+  line-height: 60rpx;
+  vertical-align: middle;
+  text-align: center;
+}
+
+/* 滑动导航条结束 */
+/* 轮播图开始 */
+
+/* 轮播图结束 */
+.slide swiper{
+  min-height: 360rpx;
+}
+.vipBox {
+  height: 190rpx;
+  background-color: #f5f5f5;
+}
+
+.vipList {
+  margin: 20rpx 0;
+}
+
+.vipList .group {
+  float: left;
+  width: 25%;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  font-size: 14px;
+  text-align: center;
+}
+
+.group image {
+  width: 120rpx;
+  height: 120rpx;
+  vertical-align: middle;
+}
+
+.group text {
+  display: block;
+  line-height: 50rpx;
+}
+
+.loveBox {
+  text-align: center;
+  margin-top: 20rpx;
+}
+
+.loveTitle image {
+  width: 200rpx;
+  height: 30rpx;
+  display: inline-block;
+}
+
+.loveList {
+  margin-top: 10rpx;
+  width: calc(33.333% - 4px);
+  position: relative;
+}
+
+.loveList image {
+  width: 220rpx;
+  height: 260rpx;
+  vertical-align: top;
+}
+
+.loveList0 {
+  background: linear-gradient(to bottom, #f30, #f86a2a);
+}
+
+.loveList1 {
+  background: linear-gradient(to bottom, #171523, #232035);
+}
+
+.loveList2 {
+  background: linear-gradient(to bottom, #66b602, #77d008);
+}
+
+.ptn {
+  color: #fff;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  line-height: 30px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.W100 image {
+  width: 100%;
+  vertical-align: top;
+}
+
+.vipShop {
+  display: flex;
+  font-size: 16px;
+  line-height: 25px;
+  justify-content: space-between;
+}
+
+.vipShop .title {
+  border-left: 2px solid #f30;
+  padding-left: 20rpx;
+  letter-spacing: 2px;
+}
+
+.vipShop .title .more {
+  color: #f30;
+  font-size: 16px;
+}
+
+.ptnb {
+  top: 100%;
+  color: #f30;
+  background-color: rgba(248, 241, 241, 0.705);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: -60rpx;
+}
+
+.jp-group {
+  position: relative;
+  text-align: center;
+  font-size: 10px;
+}
+
+.jp-group image {
+  width: 100%;
+  max-height: 242rpx;
+}
+
+.ttjz {
+  background-color: #e5e5e5;
+  width: calc(50% - 4px);
+  position: relative;
+}
+
+.ttjz .ptn {
+  color: #f60;
+}
+
+.wsg .wsg-group {
+  width: 33.33%;
+}
+
+.wsg {
+  padding: 1rpx 0 20rpx;
+  background-color: #e5e5e5;
+  /* padding: 20rpx 40rpx; */
+}
+
+.jump {
+  padding: 30rpx;
+  border-radius: 20rpx;
+  background-color: #fff;
+  border: #f5f5f5;
+}
+
+.jump .wsg-group {
+  margin-left: 12rpx;
+  font-size: 12px;
+  text-align: center;
+}
+
+.jump .wsg-group:first-child {
+  margin-left: 0;
+}
+
+.wsg-group  image {
+  border-radius: 10rpx;
+}
+
+.wsg-group .title {
+  margin: 10rpx 0;
+  height: 60rpx;
+  line-height: 30rpx;
+}
+
+
+.wsg-group .price {
+  margin: 10rpx 0;
+  color: #f30;
+}
+
+/* 热门精选 */
+
+.list-group {
+  width: calc(50% - 2px);
+  margin-left: 8rpx;
+  font-size: 12px;
+  float: left;
+  text-align: center;
+  margin-bottom: 10rpx;
+  padding: 10rpx 0;
+}
+
+.list-group:nth-child(odd) {
+  margin-left: 0;
+}
+
+.list-group .zhekou {
+  margin: 8rpx;
+  background-color: #f24032;
+  color: white;
+  padding: 6rpx 15rpx;
+  border-radius: 10rpx;
+  width: 50rpx;
+  line-height: 32rpx;
+}
+
+.list-group .webkitBox {
+  text-align: left;
+  line-height: 40rpx;
+  height: 80rpx;
+  padding: 0 10rpx; 
+}
+
+.list-group .price {
+  padding: 0 20rpx;
+  line-height: 40rpx;
+}
+
+.list-group .price .newsPrice {
+  font-size: 14px;
+  color: #c92832;
+}
+
+.list-group .price .oldPrice {
+  font-size: 12px;
+  color: #bbb;
+  text-decoration: line-through;
+}
+
+.fxjplist2 {
+  width: 32.33%;
+}
+
+.fxjplist2 image {
+  width: 100%;
+}
+
+.mb5 {
+  margin-bottom: 10rpx;
+}
+
+.loveli2{
+  float:left;
+  margin-left: 12rpx;
+}
+.loveli2:first-child{
+  margin-left: 0;
+}
+.mb8 {
+  margin-bottom: 16rpx;
+}
+.mt8{
+  margin-top:16rpx;
+}
+.m8{
+  margin: 16rpx 0;
+}
+.rmjx{
+  background-color:#e5e5e5;
+  margin-top:-10px;
+
+}
+.p10{
+  padding:20rpx 0;
+}
+.mt5{
+  margin-top: 10rpx;
+}
+.rmjx .vipShop{
+  padding:  10rpx;
+  
+}
+.goMore button{
+  font-size: 12px;
+  color: #666;
+}
