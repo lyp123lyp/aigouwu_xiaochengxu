@@ -1,8 +1,12 @@
 /* pages/detail/detail.wxss */
 page{
   background-color: #f5f5f5;
-  padding-top: 10rpx;
-  font-size: 12px;
+  padding-top: 14rpx;
+  font-size: 14px; 
+  color: #777;
+}
+button::after{
+  border: 0;
 }
 .goods-swiper{
   position: relative;
@@ -10,6 +14,9 @@ page{
 .goods-swiper  swiper{
   height: 704rpx;
   
+}
+.goods-swiper  swiper swiper-item image{
+  width: 100%;
 }
 .goods-swiper .index-picture{
   position: absolute;
@@ -27,7 +34,6 @@ page{
     padding: 20rpx;
 }
 .goods-title{
-  font-size: 14px;
     display:flex;
 }
 .goods-title .disc {
@@ -45,15 +51,22 @@ page{
   width: 35%;
 }
 .goods-title  .shares{
+  display: block;
   width: 30%;
   text-align: center;
   margin-left: auto;
-  line-height: 50rpx;
 }
-.goods-title  .shares image{
+.goods-title  .shares button{
+  padding: 0;
+  font-size: 14px;
+  line-height:50rpx;
+  color: #777;
+}
+.goods-title  .shares .iconfont{
   width:46rpx;
   display:block;
   margin: 0 auto;
+  font-size: 20px;
 }
 .goods-price .zhekou{
  margin-left:100rpx;
@@ -62,14 +75,11 @@ page{
   padding-top: 0;
   font-size: 18px; 
 }
-.goods-price .p-price,.hlike{
+.goods-price .p-price{
    color: #EC5151;
 }
 .goods-price .zhekou{
   font-size: 14px;
-}
-.goods-attr{
-  font-size: 14px; 
 }
 .goods-attr .hlike{
   margin-left: 20rpx;
@@ -77,9 +87,198 @@ page{
 .pdt0{
   padding-top: 0;
 }
+.goods-price .p-market{
+  font-size: 16px;
+}
+.goods-price .p-market .xiaoliang,
+.goods-price .p-market .stock{
+  margin-left: 60rpx;
+}
+.goods-evaluation{
+  margin: 20rpx 0;
+}
+.showPingLun image{
+  width: 46rpx;
+  vertical-align : middle;
+}
+.goods-details .head{
+  font-size:18px;
+  border-bottom: 1px solid #e5e5e5;
+}
+.goods-details .imageBox image{
+  width: 100%;
+  margin-bottom: 20rpx;
+}
+.goods-add-cart{
+  border-top:1px solid #e5e5e5;
+  background-color: #fff;
+  line-height:86rpx;
+  padding-left:0;
+}
+.goods-add-cart  .kefu,
+.goods-add-cart  .cart{
+  width: calc(18% - 10rpx);
+  font-size: 14px;
+}
+.goods-add-cart  .kefu{margin-left: 20rpx;}
+.addCart,
+.buy{
+  width: calc(32% - 10px);
+  font-size: 16px;
+  text-align: center;
+  color: #fff;
+  border-radius: 5px;
+  margin-left: 20rpx;
+}
+.goods-add-cart   button{
+  font-size: 14px;
+  padding: 0;
+  line-height: 36rpx;
+  text-align: center;
+  background:#fff;
+}
+ .addCart{
+  background: #f4a213;
+  border: 1px solid #e19511;
 
+}
+ .buy{
+    background: #EC5151;
+    border: 1px solid #df4141;
+}
+.goods-add-cart  .iconfont{
+  width: 58rpx;
+  font-size: 26px;
+  display: block;
+  margin: 0 auto;
+  height:48rpx;
+  line-height: 48rpx;
+}
+.goods-add-cart  .cart .iconfont{
+  width: 72rpx;
+}
 .goods-price,
 .goods-title,
-.goods-title{
-    line-height: 46rpx;
+.goods-attr,
+.goods-evaluation,
+.goods-details{
+    line-height: 50rpx;
+    background-color: #fff;
+}
+/* 底部浮层的样式 */
+.mask-layer {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.2;
+  z-index: 1000;
+  color: #fff;
+}
+.pop-common {
+  position: fixed;
+  width: 100%;
+  height: 70%;
+  bottom: 0;
+  left: 0;
+  z-index: 2000;
+  background: #fff;
+  box-sizing:border-box;
+  line-height: 50rpx;
+}
+.footer .buy,
+.footer .addCart{
+  width:calc(50%-6px);
+}
+.header .pic {
+  width:40%;
+  
+}
+.header .pic image{
+  width: 100%;
+}
+.header .disc{
+  width: 60%;
+  padding-left: 20rpx;
+}
+.mleft{
+  margin-left:  64rpx;
+}
+.count .flex{
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+}
+.count .flex .iconfont{
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28px;
+  color: #f4a213;
+}
+.count .flex input{
+  width: 80rpx;
+  border: 1px solid #bbb;
+  height: 48rpx;
+  margin: 0 10rpx;
+
+}
+
+.footer {
+  position: absolute;
+  left: 0; 
+  width: 100%;
+  height: 104rpx;
+  line-height: 84rpx;
+  bottom: 0;
+  padding:0 10% 20rpx;
+  box-sizing:border-box;
+}
+.footer .buy,
+.footer .addCart{
+  width: 40%;
+}
+.kf_button{
+  color: #777;
+  overflow:visible;
+}
+.countlike{
+  position: absolute;
+  top:-14rpx;
+  left: 75rpx;
+  padding: 4rpx;
+  line-height: 30rpx;
+  height: 30rpx;
+  min-width:24rpx;
+  background-color: #EC5151;
+  color: #fff;
+  font-size: 12px;
+  border-radius: 40rpx;
+  z-index: 100;
+}
+.goods-add-cart {
+  position: fixed;
+  bottom: 0;
+  left:0;
+  width: 100%;
+  box-sizing:border-box;
+}
+.disc .closeWindow{
+  font-size: 30px;
+  color: #333;
+  text-align: right;
+  padding-right: 40rpx;
+}
+
+.guige .btn{
+  margin-right:10rpx;
+  font-size: 12px;
+  padding:8rpx 16rpx;
+  height: 60rpx;
+  border: 1px  solid #e5e5e5;
+}
+.guige .btn.hlike{
+  border-color: #EC5151;
 }

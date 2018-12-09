@@ -1,0 +1,43 @@
+<view class="userMsg flex pd10 bgWhite mb10">
+  <text class="iconfont icon-msnui-pos icon"></text>
+  <view class="userInfo">
+    <view class="connect flex">
+      <text class="uname">收货人：{{userInfo.uname}}</text>
+      <text class="uphone">{{userInfo.uphone}}</text>
+    </view>
+    <view class="adress">
+      {{userInfo.address}}
+    </view>
+  </view>
+</view>
+<view class="productDetail">
+  <navigator url="../detail/detail?pid=1">
+    <view class="record flex pd10 bgWhite">
+      <image src="{{host}}{{img_url}}" mode="widthFix" lazy-load="true"></image>
+      <view class="disc">
+        <view class="flex">
+          <view class="title ">{{title}}</view>
+          <view class="price">
+            <text class='newPrice'>¥{{newPrice}}</text>
+            <text class="oldPrice linethrough">¥{{oldPrice}}</text>
+          </view>
+        </view>
+        <view class="count">{{count}}件</view>
+      </view>
+    </view>
+  </navigator>
+  <view class="tatol mb10 bgWhite pd10">
+    <text class='hlike '>合计：¥{{tatol1}}</text>
+    <text>(不含运费/折扣)</text>
+  </view>
+</view>
+<!-- 下单的详细信息 -->
+<view class="bgWhite pd10 orderMsg">
+  <view><text class="head">订单编号：</text>7013111544188835</view>
+  <view><text class="head">下单时间：</text>{{time}}</view>
+  <view><text class="head">支付方式：</text> {{zhifu}}</view>
+  <view><text class="head">发票信息：</text> {{fapiao}}</view>
+  <view><text class="head">订单总额：</text> <text class="hlike">¥{{tatol1}}</text> </view>
+  <view><text class="head">钱包折扣：</text> <text class="hlike">¥-{{zhekou}}</text> </view>
+  <view><text class="head">实际支付：</text> <text class="hlike">¥{{tatol2}}</text> </view>
+</view>

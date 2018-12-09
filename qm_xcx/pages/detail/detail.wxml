@@ -1,41 +1,128 @@
 <!-- 商品详情页的轮播 -->
 <view class="goods-swiper swiper">
-  <swiper circular="true">
+  <swiper circular="true" bindchange='currentCheck'>
     <block wx:for="{{imgUrls}}" wx:key="item">
       <swiper-item class="W100">
         <image src="{{host}}{{item}}" class="slide-image" mode="widthFix" lazy-load="true" />
       </swiper-item>
     </block>
   </swiper>
-  <view class="index-picture">1/4</view>
+  <view class="index-picture">{{index}}/{{imgUrls.length}}</view>
 </view>
 <view class="goods-title pd10">
   <view class="disc">
-    <text class="zhekou">折扣</text>休闲胸包斜挎包防水单肩包旅行挎包背包
+    <text class="zhekou">折扣</text>{{title}}
   </view>
   <view class="shareColl">
     <view class="collection"></view>
     <view class="shares">
-      <image src="{{host}}/picture/share.png" mode="widthFix">
-      </image>
-       <text>分享</text>
+      <button open-type='share'>
+        <text class="iconfont icon-fenxiang"></text>
+        <text>分享</text>
+      </button>
     </view>
   </view>
 </view>
 <!-- 商品价格 -->
 <view class="goods-price pd10">
-  <view class="p-price">¥64.00<text class="zhekou">7.6折</text></view>
-  <view class="p-market"></view>
+  <view class="p-price">¥{{newPrice}}
+    <text class="zhekou">{{zhe}}折</text>
+  </view>
+  <view class="p-market">市场价格：
+    <text class="oldPrice">¥{{oldPrice}}</text>
+    <text class="xiaoliang">销量 {{sellCount}}</text>
+    <text class="stock">库存 {{store}}</text>
+  </view>
 </view>
 <!-- 运费信息 -->
-<view class="goods-attr pd10 pdt0">运费信息<text class="hlike">包邮</text></view>
-<view class="showCount"></view>
+<view class="goods-attr pd10 pdt0">运费信息
+  <text class="hlike">{{subtitle}}</text>
+</view>
 <!-- 用户评价 -->
-<view class="goods-evaluation">
+<view class="goods-evaluation pd10 flex">
+  <view>用户评价：</view>
+  <view class="hlike" wx:if="{{comment==0}}">还没有人评价过</view>
+  <view class="showPingLun">
+    <text class="hlike">{{comment}}</text>人评价
+    <text class="iconfont icon-xiangyou"></text>
+  </view>
 </view>
 <!-- 图文详情 -->
-<view class="goods-details"></view>
+<view class="goods-details">
+  <view class="head  pd10 hlike">商品描述</view>
+  <view class="imageBox pd10">
+    <block wx:for="{{detailImgList}}" wx:key="index">
+      <image src="{{host}}{{item}}" lazy-load="true" mode="widthFix"></image>
+    </block>
+  </view>
+</view>
 <!-- 底部加入购物车 -->
-<view class="goods-add-cart"></view>
-<!-- 商品数量选择 -->
-<view class="goods-add-count"></view>
+<view class="goods-add-cart flex pd10">
+  <!-- 客服按钮 -->
+  <view class="kefu">
+    <button class="kf_button" open-type="contact" session-from="weapp">
+      <text class="iconfont icon-huihua"></text>
+      <text>客服</text>
+    </button>
+  </view>
+  <!-- 购物车按钮 -->
+  <view class="cart">
+    <button class="kf_button" bindtap="goToCart">
+      <text class="iconfont icon-gouwuche"></text>
+      <text>购物车</text>
+      <text class="countlike">{{cartCount}}</text>
+    </button>
+  </view>
+  <view class="addCart" bindtap="showModal">
+    加入购物车
+  </view>
+  <view class="buy" bindtap="showModal">
+    立即购买
+  </view>
+</view>
+<!-- 商品数量选择 ，底部浮层-->
+
+<!-- <view class='mask-layer' wx:if="{{showPop}}" bindtap='hideModal'></view> -->
+<view class='pop-add-cart pop-common pd10' wx:if="{{showPop}}" animation='{{animationData}}'>
+  <view class='header flex '>
+    <view class="pic">
+      <image src="{{host}}/picture/5c04efd424c44.jpeg" mode="widthFix" lazy-load="true"></image>
+    </view>
+    <view class="disc">
+      <view class='title'>{{title}}</view>
+      <view class="price hlike">¥{{newPrice}}</view>
+      <view class="store">库存：{{store}}</view>
+      <view class="closeWindow" bindtap="hideModal">×</view>
+    </view>
+  </view>
+  <scroll-view class='body'>
+    <view class="shuxing">
+      <view>颜色：</view>
+      <view class="guige mleft clear">
+        <block wx:for="{{spec}}" wx:key="index">
+            <text class="btn {{index==colorStatus?'hlike':''}}" bindtap="checkStatus" data-colorstatus="{{index}}">{{item.color}}</text>    
+        </block>
+      </view>
+    </view>
+    <view class="chiMa" wx:if="{{chiMa.length>0}}">
+      <view>尺码：</view>
+      <view class="guige mleft clear">
+        <block wx:for="{{chiMa}}" wx:key="index">
+            <text class="btn {{index==chiMaStatus?'hlike':''}}" bindtap="checkStatus" data-chimastatus="{{index}}">{{item.color}}</text>
+        </block>
+      </view>
+    </view>
+    <view class="count">
+      <view>数量：</view>
+      <view class="flex shopNum">
+        <text class="iconfont icon-jia-jian" bindtap="addNum" id="jian"></text>
+        <input bindblur="blurNum" bindinput="inputNum" value="{{value}}" confirm-type="确定"></input>
+        <text class="iconfont icon-jia" bindtap="addNum" id="jia"></text>
+      </view>
+    </view>
+  </scroll-view>
+  <view class='footer flex'>
+    <view class="addCart" bindtap="addCart">加入购物车</view>
+    <view class="buy" bindtap="addCart" id="buy">{{colorStatus>-1&&chiMaStatus>-1?'立即结算':'请选择属性'}}</view>
+  </view>
+</view>
