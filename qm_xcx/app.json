@@ -1,18 +1,50 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/cart/cart",
     "pages/detail/detail",
     "pages/orderDetail/orderDetail",
     "pages/order/order",
     "pages/user/user",
-    
-    "pages/assortment/assortment",
-    "pages/index/index" 
+    "pages/search/search",
+    "pages/classify/classify"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "爱购物",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "onReachBottomDistance": "100"
+  },
+  "tabBar": {
+    "color": "#777",
+    "selectedColor": "#333",
+    "background-color": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "icon/index1.png",
+        "selectedIconPath": "icon/index.png"
+      },
+      {
+        "pagePath": "pages/classify/classify",
+        "text": "分类",
+        "iconPath": "icon/fenlei11.png",
+        "selectedIconPath": "icon/fenlei1.png"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "iconPath": "icon/gouwuche1.png",
+        "selectedIconPath": "icon/gouwuche.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的",
+        "iconPath": "icon/user1.png",
+        "selectedIconPath": "icon/user.png"
+      }
+    ]
   }
 }

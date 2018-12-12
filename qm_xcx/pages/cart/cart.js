@@ -7,11 +7,12 @@ Page({
    */
   data: {
     host: app.globalData.host,
-    checkAllList: false,
+    checkAllList: false,//是否全选
     cartList: [], //购物车列表
     tatol: 0, //商品的合计
     count: 0, //被选中的商品数，用来判断是否全选
   },
+  //点击复选框来改变商品是否选中，来判断是否全选
   checkboxChange(event) {
     //console.log(event);
     var index = event.currentTarget.dataset.index;
@@ -20,9 +21,12 @@ Page({
     this.setData({
       count:arr[0],
       tatol:arr[1],
-      checkAllList: arr[0] == this.data.cartList.lenth ? true : false
+      checkAllList: arr[0] == this.data.cartList.length ? true : false
     });
+    var cartList = JSON.stringify(this.data.cartList);
+    wx.setStorageSync("cartList",cartList);
   },
+  // 通过点击事件来改变输入框的值
   addNum(event) {
     var arr = this.data.cartList;
     var curt = event.currentTarget;
@@ -50,12 +54,16 @@ Page({
     }
    
     var tatol_count=app.tatolAll(this);
-   
+    
     this.setData({
       cartList: arr,
       tatol:tatol_count[1]
     });
+    var cartList=JSON.stringify(this.data.cartList);
+    wx.setStorageSync("cartList", cartList);
+
   },
+  // 手动输入输入框的值
   changeValue(event) {
     var value = event.detail.value;
     var index=event.currentTarget.dataset.index;
@@ -82,29 +90,111 @@ Page({
       cartList:arr,
       tatol:tatol_count[1]
     });
+    var cartList = JSON.stringify(this.data.cartList);
+    wx.setStorageSync("cartList", cartList);
+
+  },
+  //删除商品
+  deleteItem(event){
+      var index=event.currentTarget.dataset.index;
+      var arr=this.data.cartList;
+      arr.splice(index,1);
+      var count_tatol=app.tatolAll(this);
+      this.setData({
+        cartList:arr,
+        count:count_tatol[0],
+        tatol:count_tatol[1],
+        checkAllList:count_tatol[0]==arr.length&&arr.length!=0?true:false
+      });
+    var cartList = JSON.stringify(this.data.cartList);
+    wx.setStorageSync("cartList", cartList);
+
+      
+  },
+  //全选商品
+  checkAllItem(event){
+    var  flag=this.data.checkAllList;
+    var arr=this.data.cartList;
+     for(var i=0,len=arr.length;i<len;i++){
+       arr[i].checks=!flag;
+     }
+     if(!flag){
+       var count_tatol=app.tatolAll(this);
+     }else{
+       var count_tatol=[0,0]
+     }
+     this.setData({
+       cartList:arr,
+       checkAllList: !flag,
+       count:count_tatol[0],
+       tatol:count_tatol[1]
+     });
+    var cartList = JSON.stringify(this.data.cartList);
+    wx.setStorageSync("cartList", cartList);
+
+  },
+  //提交订单
+  gotoOrders(){
+    if(this.data.tatol==0){
+      wx.showToast({
+        title: '您没有选中商品',
+        icon:"none"
+      });
+      return
+    }
+    //向数据库发送请求，提交订单
+    var cartList= wx.getStorageSync("cartList");
+    var arr=JSON.parse(cartList);
+    var orders=[];
+    var cartList1=[];//用来筛选为选中的商品
+    for(var i=0,len=arr.length;i<len;i++){
+       if(arr[i].checks==true){
+         orders.push(arr[i])
+       }else{
+         cartList1.push(arr[i]);
+       }
+    };
+    wx.request({
+      url: this.data.host+'/products/orders',
+      data:{orders},
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success:function(res){
+          var c=res.data;
+          if(c.code==1){
+            var title="提交成功"
+            wx.showToast({
+              title,
+              icon: "none"
+            });
+            //提交成功后要删除原来选中的数据
+            //重新给cartList储存赋值
+            var cartList=JSON.stringify(cartList1);
+            wx.setStorageSync("cartList", cartList);
+          }else{
+            var title="提交失败"
+            wx.showToast({
+              title,
+              icon: "none"
+            })
+            return ;
+          }
+         
+        //提交成功后跳转到订单页
+          wx.navigateTo({
+          url: '../order/order',
+          })
+      }
+    })
+
+    
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    
-    var res = [{
-      img_url: "/picture/5c04ef116e12f.jpeg",
-      title: "女士羊毛纯色贝雷帽潮森系帽子",
-      color: "MZ06 焦糖色",
-      chiMa: "可调节",
-      newPrice: 35,
-      value: 1,
-      checks: false,
-      numId: 10000,
-      pid: 1
-    }];
-    for (var i = 0; i < res.length; i++) {
-      res[i].newPrice = res[0].newPrice.toFixed(2);
-    }
-    this.setData({
-      cartList: res
-    });
+   
   },
 
   /**
@@ -118,7 +208,19 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    var result = wx.getStorageSync("cartList");
+    //console.log(result);
+    var cartList = JSON.parse(result);
+    //console.log(cartList); //返回值当中的guiGeChiMa是一个选择商品的类型数组。
+    this.setData({
+      cartList
+    })
+  //总价依赖于this
+    var tatol_count = app.tatolAll(this);//获取商品总价，和选中了几个品牌
+    this.setData({
+      tatol:tatol_count[1],
+      checkAllList: tatol_count[0] == this.data.cartList.length && tatol_count[0]!=0 ? true : false
+    })
   },
 
   /**

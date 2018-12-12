@@ -1,10 +1,12 @@
 /* pages/index/index.wxss */
 page{
-  color: #666;
+  color: #777;
+  font-size:12rpx;
 }
 
 .search {
   padding: 5rpx 20rpx;
+  position: relative;
 }
 
 .section {
@@ -17,15 +19,21 @@ page{
   border: 1px solid #e0e0e0;
 }
 
-.section image, .section icon {
+.search image, .search icon {
   vertical-align: middle;
-  width: 40rpx;
-  height: 40rpx;
-  margin-right: 15rpx;
+  width: 60rpx;
+  height: 55rpx;
 }
-
+.search .icon {
+  position: absolute;
+  top:17rpx;
+  left:54rpx;
+}
 .section input {
   margin-top: -5rpx;
+  width:90%;
+  margin-left: 55rpx;
+  
 }
 /* 滑动导航条开始*/
 .scroll {
@@ -47,8 +55,12 @@ page{
 .meal-time-item:last-child{
   margin-right: 0;
 }
+.meal-time-item:first-child{
+  margin-left: 5rpx;
+}
 .meal-time-item {
-  width: 134rpx;
+  /* width: 109rpx; */
+  padding:0 15rpx;
   height:60rpx;
   margin-right: 20rpx;
   display: inline-block;
@@ -67,7 +79,23 @@ page{
   vertical-align: middle;
   text-align: center;
 }
-
+.historyList{
+  position: absolute;
+  left:calc(5%-5px);
+  top: 70rpx;
+  z-index: 101;
+  width: 90%;
+  line-height:40rpx;
+  font-size: 12px;
+  
+}
+.historyItem{
+  display: inline-block;
+  vertical-align: top;
+  padding: 6rpx 10rpx;
+  border: 1px solid #e5e5e5;
+  margin-right: 10rpx;
+}
 /* 滑动导航条结束 */
 /* 轮播图开始 */
 
@@ -153,6 +181,7 @@ page{
 .W100 image {
   width: 100%;
   vertical-align: top;
+  height: auto;
 }
 
 .vipShop {
@@ -163,19 +192,19 @@ page{
 }
 
 .vipShop .title {
-  border-left: 2px solid #f30;
+  border-left: 2px solid #EC5151;
   padding-left: 20rpx;
   letter-spacing: 2px;
 }
 
-.vipShop .title .more {
-  color: #f30;
-  font-size: 16px;
+.vipShop  .more {
+  color: #EC5151;
+  font-size: 14px;
 }
 
 .ptnb {
   top: 100%;
-  color: #f30;
+  color: #EC5151;
   background-color: rgba(248, 241, 241, 0.705);
   white-space: nowrap;
   overflow: hidden;
@@ -201,9 +230,12 @@ page{
 }
 
 .ttjz .ptn {
-  color: #f60;
+  color: #EC5151;
 }
-
+.wsg .vipShop,
+.rmjx .vipShop{
+  padding-left: 20rpx;
+}
 .wsg .wsg-group {
   width: 33.33%;
 }
@@ -244,7 +276,7 @@ page{
 
 .wsg-group .price {
   margin: 10rpx 0;
-  color: #f30;
+  color: #EC5151;
 }
 
 /* 热门精选 */
@@ -265,7 +297,7 @@ page{
 
 .list-group .zhekou {
   margin: 8rpx;
-  background-color: #f24032;
+  background-color: #EC5151;
   color: white;
   padding: 6rpx 15rpx;
   border-radius: 10rpx;
@@ -287,7 +319,7 @@ page{
 
 .list-group .price .newsPrice {
   font-size: 14px;
-  color: #c92832;
+  color: #EC5151;
 }
 
 .list-group .price .oldPrice {
@@ -335,11 +367,7 @@ page{
 .mt5{
   margin-top: 10rpx;
 }
-.rmjx .vipShop{
-  padding:  10rpx;
-  
-}
 .goMore button{
   font-size: 12px;
-  color: #666;
+  color: #666; 
 }

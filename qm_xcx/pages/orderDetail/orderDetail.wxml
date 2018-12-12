@@ -13,7 +13,7 @@
 <view class="productDetail">
   <navigator url="../detail/detail?pid=1">
     <view class="record flex pd10 bgWhite">
-      <image src="{{host}}{{img_url}}" mode="widthFix" lazy-load="true"></image>
+      <image src="{{host}}/picture/{{img_url}}" mode="widthFix" lazy-load="true"></image>
       <view class="disc">
         <view class="flex">
           <view class="title ">{{title}}</view>
@@ -22,7 +22,7 @@
             <text class="oldPrice linethrough">¥{{oldPrice}}</text>
           </view>
         </view>
-        <view class="count">{{count}}件</view>
+        <view class="count">{{value}}件</view>
       </view>
     </view>
   </navigator>
@@ -33,7 +33,7 @@
 </view>
 <!-- 下单的详细信息 -->
 <view class="bgWhite pd10 orderMsg">
-  <view><text class="head">订单编号：</text>7013111544188835</view>
+  <view><text class="head">订单编号：</text>{{oid}}</view>
   <view><text class="head">下单时间：</text>{{time}}</view>
   <view><text class="head">支付方式：</text> {{zhifu}}</view>
   <view><text class="head">发票信息：</text> {{fapiao}}</view>

@@ -12,18 +12,18 @@ Page({
        uphone:"13973897035",
        address:"湖南省-长沙市-岳麓区-绿地中央"
      },
-       pid:1,
-       img_url:"/picture/5c04efd424c44.jpeg",
-       title:"云南白药留兰香型祛除口腔异味牙膏-3支装",
-       newPrice:0,
+      pid:1,
+      img_url:"5c04efd424c44.jpeg",
+      title:"云南白药留兰香型祛除口腔异味牙膏-3支装",
+      newPrice:0,
       oldPrice:0,
-      count:1,
-       time: "2018-12-07 21:20:35",
-       zhifu:"在线支付",
-       zhekou:0,
-       tatol1: 0,
-        tatol2:0,
-        fapiao:""
+      value:1,
+      time: "2018-12-07 21:20:35",
+      zhifu:"在线支付",
+      zhekou:0,
+      tatol1: 0,
+      tatol2:0,
+      fapiao:""
    
   },
 
@@ -31,29 +31,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var res={
-      pid: 1,
-      img_url: "/picture/5c04efd424c44.jpeg",
-      title: "云南白药留兰香型祛除口腔异味牙膏-3支装",
-      newPrice: 99,
-      oldPrice: 112,
-      count: 1,
-      time: "2018-12-07 21:20:35",
-      zhifu: "在线支付",
-      zhekou: 15,
-      fapiao:"不要发票"
-    };  
-    console.log(res.time);
+    var details=options.details;
+    var arr=details.slice(1,-1).split(",");
+    //console.log(arr);
+    var res={zhekou:2.5};
+      var [oid,title,newPrice,oldPrice,value,time,img_url]=arr;
       this.setData({
-        tatol1: (res.newPrice * res.count).toFixed(2),
-        tatol2: (res.newPrice * res.count-res.zhekou).toFixed(2),
-        pid:res.pid,
-        img_url:res.img_url,
-        title:res.title,
-        newPrice:(res.newPrice).toFixed(2),
-        oldPrice:(res.oldPrice).toFixed(2),
-        time:res.time,//获取到的是毫秒要做转换
-        zhifu:res.zhifu,
+        tatol1: (newPrice * value).toFixed(2),
+        tatol2: (newPrice * value-res.zhekou).toFixed(2),
+        oid:oid,
+        img_url:img_url,
+        title:title,
+        newPrice:(newPrice*1).toFixed(2),
+        oldPrice:(oldPrice*1).toFixed(2),
+        time:time,//获取到的是毫秒要做转换
         zhekou:(res.zhekou).toFixed(2),
         fapiao:"不要发票"
         

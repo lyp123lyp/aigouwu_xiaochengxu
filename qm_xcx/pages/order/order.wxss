@@ -65,6 +65,7 @@ page{
 }
 .proDetail .img image{
   width: 100%;
+  height: auto ;
 }
 .proDetail .disc{
   flex: 1;
@@ -81,8 +82,11 @@ page{
 }
 .tatol .num {
   font-size: 14px;
-  color: #333;
+  /* color: #333; */
   margin-right: 8rpx;
+}
+.small{
+  font-size: 10px;
 }
 .order_show_del{
   color: #333;

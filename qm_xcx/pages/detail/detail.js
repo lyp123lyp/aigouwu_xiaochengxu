@@ -15,24 +15,25 @@ Page({
     zhe: 9.8, //商品折扣
     sellCount: 1, //销量
     store: 1500, //商品当前的库存
-    subtitle: "包邮", //商品是否包邮
+    promise: "包邮", //商品是否包邮
     comment: 0, //上坪是否评论
     showComment: false, //是否有评论提示信息
     detailImgList: [], //商品详情图片列表
-    cartCount: 0, //购物车的商品数量
+    cartCount: app.globalData.cartCount||0, //购物车的商品数量
     animationData: {},
     commentPople: true,
-    spec: [], //商品的规格颜色，id编号
+    spec: [], //商品的规格/颜色，id编号
     chiMa: [], //商品的尺码
     showPop: false, //底层弹窗是否显示，
-    colorStatus: -1,
-    chiMaStatus: -1,
+    colorStatus: -1, //是否选中规格颜色
+    chiMaStatus: -1, //尺码是否选中
     value: 1, //添加商品输入框的初始值，也是最小值
+    guiGeChiMa: [] //用来提交订单的,规格尺码的集合
   },
   //当前的current改变
-  currentCheck(event){
+  currentCheck(event) {
     this.setData({
-      index:event.detail.current+1
+      index: event.detail.current + 1
     });
   },
   // 显示底部弹层
@@ -43,15 +44,15 @@ Page({
       timingFunction: 'ease',
       delay: 0
     })
-   
+
     _this.animation = animation
-    animation.translateY(422).step()//启动动画的初始位置
+    animation.translateY(422).step() //启动动画的初始位置
     _this.setData({
       animationData: animation.export(),
       showPop: true
     })
     setTimeout(function() {
-      animation.translateY(0).step()//动画的结束位置
+      animation.translateY(0).step() //动画的结束位置
       _this.setData({
         animationData: animation.export()
       })
@@ -71,11 +72,11 @@ Page({
     _this.setData({
       animationData: animation.export(),
     })
-    setTimeout(function () {
+    setTimeout(function() {
       _this.setData({
-        showPop:false
+        showPop: false
       })
-    }.bind(_this),500)
+    }.bind(_this), 500)
   },
   addNum(event) {
     var id = event.currentTarget.id;
@@ -123,14 +124,19 @@ Page({
   checkStatus(event) {
     //console.log(event);
     var dataset = event.currentTarget.dataset;
-    console.log(dataset);
+    //console.log(dataset);
+    var arr = this.data.guiGeChiMa;
     if (dataset.chiMaStatus == undefined) {
+      arr[0] = dataset.guigeyanse; //规格颜色
       this.setData({
-        colorStatus: dataset.colorstatus
+        colorStatus: dataset.colorstatus,
+        guiGeChiMa: arr
       });
     } else {
+      arr[1] = this.dataset.chima;
       this.setData({
-        chiMaStatus: dataset.chimastatus
+        chiMaStatus: dataset.chimastatus,
+        guiGeChiMa: arr
       });
     }
   },
@@ -141,22 +147,85 @@ Page({
         icon: "none"
       })
     } else {
-      //发送请求插入数据库
+      //本地储存
       //返回购物车的数据，购物车的数据全局储存
+      var {
+        title,
+        newPrice,
+        oldPrice,
+        guiGeChiMa,
+        value,
+        pid
+      } = this.data;
+      var img_url=this.data.imgUrls[0];
+      var obj = {
+        "title": title,
+        "newPrice": newPrice,
+        "oldPrice":oldPrice,
+        "guiGeChiMa": guiGeChiMa,
+        "value": value,
+        "pid": pid,
+        "img_url":img_url,
+        "checks":false//用啦判断购物车商品是否点击选中
+      };
+     // wx.clearStorageSync("caratList");//清空购物车数据  
+      var cartList = wx.getStorageSync("cartList") || [];
+      var len = cartList.length,
+        index = -1;
+      if (len == 0) {
+        var arr = [obj];
+        cartList = JSON.stringify(arr);
+      } else {
+        var arr = JSON.parse(cartList);
+        var arr2=[];
+        for (var i = 0, len = arr.length; i < len; i++) {
+          var obj2 = arr[i];
+          if (obj["pid"] == obj2["pid"]) {
+            obj2["value"] = obj2["value"] * 1 + obj["value"] * 1;
+            index = i;
+          }
+          arr2[i] = obj2;
+        }
+        if (index == -1) {
+           arr2.push(obj);
+        }
+        cartList = JSON.stringify(arr2);
+        
+      }
+      
+      wx.setStorageSync("cartList", cartList);
+      //获取商品数量，赋值给购物车
+      
+     
+      var count = this.cartCount();
+      this.setData({
+        cartCount: count
+
+      })
+
       //加入购物车后隐藏弹窗，
       if (event.currentTarget.id == "buy") {
-         this.goToCart();
+        this.goToCart();
         return;
       }
       this.hideModal();
-
     }
 
   },
-  goToCart(){
-    wx.navigateTo({
+  goToCart() {
+    wx.switchTab({
       url: '../cart/cart',
     })
+  },
+  //获取购物车商品数量
+  cartCount(){
+    var cartList=wx.getStorageSync("cartList");
+    var arr= JSON.parse(cartList);
+    var count=0;
+    for(var i=0,len=arr.length;i<len;i++){
+      count+=arr[i]["value"]*1;
+    };
+    return count;
   },
   /**
    * 生命周期函数--监听页面加载
@@ -164,60 +233,41 @@ Page({
   onLoad: function(options) {
     var pid = options.pid;
     //根据pid 发送请求商品信息
-    //
-    var res = {
-      imgUrls: ["/picture/5c04efd424c44.jpeg", "/picture/5c04efd5cab89.jpeg", "/picture/5c04efd748899.jpeg", "/picture/5c04efd907257.jpeg", "/picture/5c04efda7d523.jpeg"],
-      title: "休闲胸包斜挎包防水单肩包旅行挎包背包",
-      newPrice: 68,
-      oldPrice: 88,
-      zhe: 7.6,
-      sellCount: 1,
-      store: 1500,
-      subtitle: "包邮",
-      comment: 0,
-      detailImgList: ["/picture/20181203165757_30549.png"],
-      cartCount: 1,
-      spec: [{
-        pid: 1,
-        color: "1971X黑色"
-      }, {
-        pid: 2,
-        color: "1972L灰色"
-      }],
-      chiMa: []
-    }
-    var {
-      imgUrls,
-      title,
-      newPrice,
-      oldPrice,
-      zhe,
-      sellCount,
-      store,
-      subtitle,
-      comment,
-      detailImgList,
-      cartCount,
-      spec,
-      chiMa
-    } = res;
-    this.setData({
-      imgUrls,
-      title,
-      newPrice: newPrice.toFixed(2),
-      oldPrice: oldPrice.toFixed(2),
-      zhe,
-      sellCount,
-      store,
-      subtitle,
-      comment,
-      detailImgList,
-      cartCount,
-      pid: pid || 0, //模拟数据为0，因为不给值会报错
-      spec,
-      chiMa,
-      chiMaStatus: chiMa.length > 0 ? -1 : 0
-    });
+    wx.request({
+      url: this.data.host + '/products/detail?pid=' + pid,
+      success: result => {
+        var res = result.data[0];
+        var {
+          imgUrls,
+          title,
+          newPrice,
+          oldPrice,
+          zhe,
+          promise,
+          detailImgList,
+          spec,
+          chiMa
+        } = res;
+        imgUrls = imgUrls.length > 0 ? imgUrls.slice(0, -1) : "";
+        detailImgList = detailImgList.length > 0 ? detailImgList.slice(0, -1) : "";
+        spec = spec != null ? spec.slice(0, -1) : null;
+        chiMa = chiMa != null ? chiMa.slice(0, -1) : null;
+        this.setData({
+          imgUrls: imgUrls.split("#"),
+          title,
+          newPrice: newPrice.toFixed(2),
+          oldPrice: oldPrice.toFixed(2),
+          zhe,
+          promise,
+          detailImgList: detailImgList.split("#"),
+          pid: pid || 1, //模拟数据为0，因为不给值会报错
+          spec: spec != null ? spec.split("#") : [],
+          chiMa: chiMa != null ? chiMa.split("#") : [],
+          chiMaStatus: chiMa != null && chiMa.length > 0 ? -1 : 0
+        });
+
+      }
+    })
   },
 
   /**
@@ -231,7 +281,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    var cartCount =this.cartCount();
+    this.setData({
+      cartCount
+    });
   },
 
   /**

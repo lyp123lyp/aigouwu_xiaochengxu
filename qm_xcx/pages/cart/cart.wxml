@@ -7,30 +7,29 @@
         </checkbox-group>
       </view>
       <view>
-        <navigator url="../detail/detail?pid={{pid}}" class="flex">
+        <navigator url="../detail/detail?pid={{item.pid}}" class="flex">
           <view class="img">
-            <image src="{{host}}{{item.img_url}}" mode="widthFix" lazy-load="true"> </image>
+            <image src="{{host}}/picture/{{item.img_url}}" mode="widthFix" lazy-load="true"> </image>
           </view>
           <view class="detailDisc">
             <view class="title">{{item.title}}</view>
             <view class="disc">类型：
-              <text>{{item.color}}.{{item.chiMa}}</text>
+              <text>{{item.guiGeChiMa[0]}}.{{item.guiGeChiMa[1]}}</text>
             </view>
             <view class="price">
               <text>¥{{item.newPrice}}</text>
             </view>
-
           </view>
         </navigator>
-    
-          <view class="count">
-            <button class="reduce" id="jian" bindtap="addNum" data-index="{{index}}">-</button>
-            <input value="{{item.value}}" data-index="{{index}}" bindblur="changeValue" confirm-type="确定"></input>
-            <button class="add" id="jia"  bindtap="addNum" data-index="{{index}}">+</button>
-            <view class="delete" bindtap="deleteItem" data-index="{{index}}">
-              <image src="{{host}}/images/delete.png" mode="widthFix"></image>
-            </view>
+
+        <view class="count">
+          <button class="reduce" id="jian" bindtap="addNum" data-index="{{index}}">-</button>
+          <input value="{{item.value}}" data-index="{{index}}" bindblur="changeValue" confirm-type="确定"></input>
+          <button class="add" id="jia" bindtap="addNum" data-index="{{index}}">+</button>
+          <view class="delete" bindtap="deleteItem" data-index="{{index}}">
+            <image src="{{host}}/images/delete.png" mode="widthFix"></image>
           </view>
+        </view>
       </view>
     </view>
   </block>
@@ -38,9 +37,9 @@
 <!-- 底部结算部分 -->
 <view class="pay">
   <view class="checkAll">
-    <checkbox-group bindchange="checkboxChangeAll" data-checkall="{{checkAllList}}">
+    <checkbox-group bindchange="checkAllItem" data-checkall="{{checkAllList}}">
       <checkbox data-checkall="{{checkall}}" id="checkAllCart" checked="{{checkAllList}}" />
-      <text bindtap="checkboxChangeAll" data-checkall="{{checkAllList}}">全选</text>
+      <text bindtap="checkAllItem" data-checkall="{{checkAllList}}">全选</text>
     </checkbox-group>
   </view>
   <view class="tatol">
@@ -48,6 +47,6 @@
     <view class="alt">不含运费</view>
   </view>
   <view class="jiesuan">
-    <button class="submit">马上结算</button>
+    <button class="submit"  bindtap="gotoOrders">马上结算</button>
   </view>
 </view>

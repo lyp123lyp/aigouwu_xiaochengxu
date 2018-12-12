@@ -3,7 +3,7 @@
   <swiper circular="true" bindchange='currentCheck'>
     <block wx:for="{{imgUrls}}" wx:key="item">
       <swiper-item class="W100">
-        <image src="{{host}}{{item}}" class="slide-image" mode="widthFix" lazy-load="true" />
+        <image src="{{host}}/picture/{{item}}" class="slide-image" mode="widthFix" lazy-load="true" />
       </swiper-item>
     </block>
   </swiper>
@@ -36,12 +36,12 @@
 </view>
 <!-- 运费信息 -->
 <view class="goods-attr pd10 pdt0">运费信息
-  <text class="hlike">{{subtitle}}</text>
+  <text class="hlike">{{promise}}</text>
 </view>
 <!-- 用户评价 -->
 <view class="goods-evaluation pd10 flex">
   <view>用户评价：</view>
-  <view class="hlike" wx:if="{{comment==0}}">还没有人评价过</view>
+  <view class="hlike">{{comment==0?"还没有人评价过":"好评率100%"}}</view>
   <view class="showPingLun">
     <text class="hlike">{{comment}}</text>人评价
     <text class="iconfont icon-xiangyou"></text>
@@ -52,7 +52,7 @@
   <view class="head  pd10 hlike">商品描述</view>
   <view class="imageBox pd10">
     <block wx:for="{{detailImgList}}" wx:key="index">
-      <image src="{{host}}{{item}}" lazy-load="true" mode="widthFix"></image>
+      <image src="{{host}}/picture/{{item}}" lazy-load="true" mode="widthFix"></image>
     </block>
   </view>
 </view>
@@ -82,11 +82,11 @@
 </view>
 <!-- 商品数量选择 ，底部浮层-->
 
-<!-- <view class='mask-layer' wx:if="{{showPop}}" bindtap='hideModal'></view> -->
+<view class='mask-layer' wx:if="{{showPop}}" bindtap='hideModal'></view>
 <view class='pop-add-cart pop-common pd10' wx:if="{{showPop}}" animation='{{animationData}}'>
   <view class='header flex '>
     <view class="pic">
-      <image src="{{host}}/picture/5c04efd424c44.jpeg" mode="widthFix" lazy-load="true"></image>
+      <image src="{{host}}/picture/{{imgUrls[0]}}" mode="widthFix" lazy-load="true"></image>
     </view>
     <view class="disc">
       <view class='title'>{{title}}</view>
@@ -97,10 +97,10 @@
   </view>
   <scroll-view class='body'>
     <view class="shuxing">
-      <view>颜色：</view>
+      <view>规格/颜色：</view>
       <view class="guige mleft clear">
         <block wx:for="{{spec}}" wx:key="index">
-            <text class="btn {{index==colorStatus?'hlike':''}}" bindtap="checkStatus" data-colorstatus="{{index}}">{{item.color}}</text>    
+            <text class="btn {{index==colorStatus?'hlike':''}}" bindtap="checkStatus" data-colorstatus="{{index}}" data-guigeyanse="{{item}}">{{item}}</text>    
         </block>
       </view>
     </view>
@@ -108,7 +108,7 @@
       <view>尺码：</view>
       <view class="guige mleft clear">
         <block wx:for="{{chiMa}}" wx:key="index">
-            <text class="btn {{index==chiMaStatus?'hlike':''}}" bindtap="checkStatus" data-chimastatus="{{index}}">{{item.color}}</text>
+            <text class="btn {{index==chiMaStatus?'hlike':''}}" bindtap="checkStatus" data-chimastatus="{{index}}" data-chima="{{item}}">{{item}}</text>
         </block>
       </view>
     </view>
@@ -116,7 +116,7 @@
       <view>数量：</view>
       <view class="flex shopNum">
         <text class="iconfont icon-jia-jian" bindtap="addNum" id="jian"></text>
-        <input bindblur="blurNum" bindinput="inputNum" value="{{value}}" confirm-type="确定"></input>
+        <input bindblur="inputNum" bindinput="inputNum" value="{{value}}" confirm-type="确定"></input>
         <text class="iconfont icon-jia" bindtap="addNum" id="jia"></text>
       </view>
     </view>

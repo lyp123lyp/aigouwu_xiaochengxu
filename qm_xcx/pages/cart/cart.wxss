@@ -25,6 +25,9 @@ page{
   width: 30%;
   margin-right: 20rpx;
 }
+.cartListGroup  .img image{
+  height: auto;
+}
 .cartListGroup .detailDisc{
   /* width: 53%; */
   flex: 1;

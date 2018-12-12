@@ -24,7 +24,7 @@ App({
           //   },
           //   success: function(openIdRes) {
           //     console.info("获取用户openId成功");
-             
+
 
           //   },
           //   fail: function(error) {
@@ -54,7 +54,9 @@ App({
               // 可以将 res 发送给后台解码出 unionId
 
               wx.setStorageSync('userInfo', res.userInfo);
-              //this.globalData.userInfo = res.userInfo
+              this.globalData.userInfo = wx.getStorageSync("userInfo");
+
+              this.globalData.cartCount = wx.getStorageSync("cartCount") || 0;
 
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
@@ -67,10 +69,10 @@ App({
       }
     })
   },
-  accumulation(a,b){
-    return a*b;
+  accumulation(a, b) {
+    return a * b;
   },
-  tatolAll(_this){
+  tatolAll(_this) {
     var arr = _this.data.cartList,
       count = 0,
       tatol = 0;
@@ -80,11 +82,43 @@ App({
         tatol = (parseFloat(tatol) + this.accumulation(arr[i].value, arr[i].newPrice)).toFixed(2);
       }
     }
-    return [count,tatol]
+    return [count, tatol]
+  },
+  getOrders(_this) { //获取商品的订单
+    return new Promise(function (open, err) {
+      wx.request({
+        url: _this.data.host + '/products/getOrders',
+        data: {
+          uid: 101 //uid要动态赋值 
+        },
+        success: (res) => {
+          // console.log(res);
+          var orderList = res.data;
+          //设置请求返回的数据
+          _this.setData({
+            orderList
+          });
+          //console.log(orderList);
+          var orderStr = JSON.stringify(orderList);
+          wx.setStorageSync("orderList", orderStr);
+          open();
+        }
+      })
+    });
+  },
+  getStorageFn(key){//获取缓存，相对数组和对象使用
+    var orders = wx.getStorageSync(key);
+    var orderList = JSON.parse(orders);
+    return orderList;
+  },
+  setStorageFn(obj,key){//设置换存，相对数组和对象使用
+    var orders = JSON.stringify(obj);
+    wx.setStorageSync(key, orders);
   },
   globalData: {
     userInfo: null,
-    host: "http://localhost:3000"
-   
+    host: "http://localhost:3000",
+    cartCount: 0
+
   }
 })

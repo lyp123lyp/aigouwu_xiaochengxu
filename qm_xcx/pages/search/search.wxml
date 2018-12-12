@@ -1,0 +1,43 @@
+<!-- 顶部搜索框 -->
+<view class="search flex">
+  <view class="section"  bindtap="bindButtonTap">
+    <!-- <image src="{{host}}/picture/sousuo.png"></image> -->
+    <icon type="search" size="20" />
+    <input placeholder="商品搜索" focus="{{focus}}" confirm-type="搜索" value="{{keywords}}" bindinput="inputValue" bindblur="handleBlur" bindconfirm="searchProduct" />
+  </view>
+  <button class="searchBtn" bindtap='searchProduct' data-repeat="{{repeat}}">搜索</button>
+</view>
+<!-- 商品排列栏目 -->
+<view class="flex splm">
+  <view class='lmplList'>
+    <text>新品</text>
+  </view>
+  <view class='lmplList'>
+    <text>综合</text>
+  </view>
+  <view class='lmplList flex'>
+    <text>销量</text>
+    <image src="{{host}}/images/red.png"></image>
+  </view>
+  <view class='lmplList flex'>
+    <text>价格</text>
+    <image src="{{host}}/images/dark.png"></image>
+  </view>
+</view>
+<!-- 商品列表 -->
+<view class="shopList clear contain" wx:if="{{shopListGroup.length>0}}">
+  <view class="shopListGroup" wx:for="{{shopListGroup}}" wx:key=""index>
+    <navigator url="../detail/detail?pid={{item.pid}}">
+      <image src="{{host}}/picture/{{item.img_url}}" mode="widthFix" lazy-load="true"></image>
+      <view class="title webkitBox">
+        <text class="zhekou">折扣</text>{{item.title}}</view>
+      <view class="price flex contain">
+        <view class="newPrice">¥{{item.newPrice}}</view>
+        <view class="oldPrice">¥{{item.oldPrice}}</view>
+      </view>
+    </navigator>
+  </view>
+</view>
+<view class="footer">
+  —— 我是有底线的 ——
+</view>

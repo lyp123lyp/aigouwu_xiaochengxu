@@ -1,11 +1,11 @@
 
 <view class="flex myOrderList bgWhite">
-  <view  data-id="0" class="item {{index==0?'click':''}}" bindtap="status">全部</view>
-  <view data-id="1" class="item {{index==1?'click':''}}" bindtap="status">待付款</view>
-  <view data-id="2" class="item {{index==2?'click':''}}" bindtap="status">待发货</view>
-  <view data-id="3" class="item {{index==3?'click':''}}" bindtap="status">待收货</view>
-  <view data-id="4" class="item {{index==4?'click':''}}" bindtap="status">待评价</view>
-  <view data-id="5" class="item {{index==5?'click':''}}" bindtap="status">已退货</view>
+  <view  data-id="-1" class="item {{index==0?'click':''}}" bindtap="status">全部</view>
+  <view data-id="0" class="item {{index==1?'click':''}}" bindtap="status">待付款</view>
+  <view data-id="1" class="item {{index==2?'click':''}}" bindtap="status">待发货</view>
+  <view data-id="2" class="item {{index==3?'click':''}}" bindtap="status">待收货</view>
+  <view data-id="3" class="item {{index==4?'click':''}}" bindtap="status">待评价</view>
+  <view data-id="4" class="item {{index==5?'click':''}}" bindtap="status">已退货</view>
 </view>
 <view class="mt10 pd10" wx:if="{{point}}">
   <view class="alert alert-danger" role="alert">
@@ -17,37 +17,43 @@
 <view class="contain switchPoolList">
   <view class="switchPool bgWhite" wx:for="{{orderList}}" wx:key="item"> 
     <view class="orderNum flex">
-      <text>订单编号：{{item.numId}}</text>
+      <text>订单编号：{{item.oid}}</text>
       <text class="time">{{item.time}}</text>
     </view>
     <view class="proDetail flex pd10">
       <view class="img">
-        <image src="{{host}}/{{item.img_url}}" mode="widthFix" lazy-load="true"></image>
+        <image src="{{host}}/picture/{{item.img_url}}" mode="widthFix" lazy-load="true"></image>
       </view>
       <view class="disc flex">
         <view class="tp flex">
           <text class="title">{{item.title}} </text>
-          <text class="price">¥{{item.price}}</text>
+          <text class="price">¥{{item.newPrice}}</text>
         </view>
         <view class="num_old flex">
-          <text class="count">{{item.count}}件</text>
+          <text class="count">{{item.value}}件</text>
           <text class="oldPrice">¥{{item.oldPrice}}</text>
         </view>
         <view class="sx_del flex">
-          <text>款式：{{property}}</text>
-          <text class="del iconfont icon-shanchu hlike" data-numid="{{item.numId}}" bindtap="deleteNumId"></text>
+          <text>款式：{{item.guiGeChiMa}}</text>
+          <text class="del iconfont icon-shanchu hlike" data-oid="{{item.oid}}" wx:if="{{item.order_status==0||item.order_status>4}}" bindtap="deleteOid"></text>
         </view>
       </view>
     </view>
     <view class="tatol">
       合计：
-      <text class="num">¥69.00</text>
+      <text class="num hlike">¥{{item.value*item.newPrice}}</text>
       <text class="small">(含运费0)</text>
     </view>
     <view class="order_show_del flex pd10">
-      <navigator class="btn" url="../orderDetail/orderDetail?numId={{numId}}">订单详情</navigator>
-      <view class="btn" bindtap="deleteNumId" data-numid="{{item.numId}}">取消订单</view>
-      <view class="btn hlike" data-numid="{{item.numId}}" bindtap="handleBuy">立即支付</view>
+      <navigator class="btn" url="../orderDetail/orderDetail?details=[{{item.oid}},{{item.title}},{{item.newPrice}},{{item.oldPrice}},{{item.value}},{{item.time}},{{item.img_url}}]">订单详情</navigator>
+      <view class="btn" bindtap="deleteOid" data-oid="{{item.oid}}" wx:if="{{item.order_status==0}}">取消订单</view>
+      <view class="btn hlike" data-oid="{{item.oid}}" bindtap="handleBuy" wx:if="{{item.order_status==0}}">立即支付</view>
+            <view class="btn hlike" wx:if="{{item.order_status==1}}">已支付/待发货</view>
+            <view class="btn hlike" wx:if="{{item.order_status==2}}">待收货</view>
+            <view class="btn hlike" wx:if="{{item.order_status==3}}">已收货</view>
+            <view class="btn hlike" wx:if="{{item.order_status==4}}">退货处理中</view>
+            <view class="btn hlike" wx:if="{{item.order_status==5}}">已退货</view>
+            <view class="btn hlike"  wx:if="{{item.order_status==6}}">已失效</view>
     </view>
   </view>
 </view>

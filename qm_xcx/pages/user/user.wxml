@@ -20,33 +20,33 @@
     <view class="icon">
       <text class="iconfont icon-daifukuan"></text>
     </view>
-    <text class="font_12">待付款<text class="hlike">{{orderInfo.pay_num}}1</text></text>
+    <text class="font_12">待付款<text class="hlike">{{orderInfo.pay_num}}</text></text>
   </navigator>
   <navigator class="df_1" url="../order/order?orderStatus=2" hover-class="none">
     <view class="icon">
       <text class="iconfont icon-fahuo"></text>
     </view>
-    <text class="font_12">待发货<text class="hlike">{{orderInfo.Has_Sum}}0</text></text>
+    <text class="font_12">待发货<text class="hlike">{{orderInfo.Has_Sum}}</text></text>
   </navigator>
 
   <navigator class="df_1" url="../order/order?orderStatus=3" hover-class="none">
     <view class="icon">
       <text class="iconfont icon-putin"></text>
     </view>
-    <text class="font_12">待收货<text class="hlike">{{orderInfo.rec_num}}0</text></text>
+    <text class="font_12">待收货<text class="hlike">{{orderInfo.rec_num}}</text></text>
   </navigator>
 
   <navigator class="df_1" url="../order/order?orderStatus=4" hover-class="none">
     <view class="icon">
       <text class="iconfont icon-yonghuzhongxindingdanyiwancheng"></text>
     </view>
-    <text class="font_12">已完成<text class="hlike">{{orderInfo.finish_num}}0</text></text>
+    <text class="font_12">已完成<text class="hlike">{{orderInfo.finish_num}}</text></text>
   </navigator>
   <navigator class="df_1" url="../order/order?orderStatus=5" hover-class="none">
     <view class="icon">
       <text class="iconfont icon-tuihuoshouhou"></text>
     </view>
-    <text class="font_12">退款/售后<text class="hlike">{{orderInfo.refund_num}}0</text></text>
+    <text class="font_12">退款/售后<text class="hlike">{{orderInfo.refund_num}}</text></text>
   </navigator>
 </view>
 <!--个人信息-->
