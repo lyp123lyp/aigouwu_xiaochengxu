@@ -117,8 +117,8 @@ Page({
     })
   },
   //根据订单单行栏目状态显示订单
-  showOrderStatus(id){
-    var orderList = app.getStorageFn("orderList");
+  showOrderStatus(id,arr){
+   var orderList= arr;
     var list = [];
     for (var i = 0, len = orderList.length; i < len; i++) {
       if (id == -1) {
@@ -130,7 +130,6 @@ Page({
     this.setData({
       orderList: list
     });
-
   },
   /**
    * 生命周期函数--监听页面加载
@@ -141,9 +140,8 @@ Page({
       index: options.orderStatus || 0
     });
     //需要使用 Promise
-    app.getOrders(this).then(res => {
-
-      this.showOrderStatus(this.data.index - 1);
+    app.getOrders(this).then(res => {//promise 返回的是一个数组
+      this.showOrderStatus(this.data.index - 1,res);
     }); //获取订单列表，异步获取数据
   },
 

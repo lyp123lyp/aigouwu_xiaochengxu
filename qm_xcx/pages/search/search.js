@@ -1,5 +1,5 @@
 // pages/assortment/assortment.js
-const app =getApp();
+const app = getApp();
 Page({
 
   /**
@@ -7,47 +7,49 @@ Page({
    */
   data: {
     host: app.globalData.host,
-    keywords:"",
-    shopListGroup:[],
-    repeat:"" //防止同一关键词多次搜索
+    keywords: "",
+    shopListGroup: [],
+    repeat: "", //防止同一关键词重复搜索
+    rank: 1
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     this.setData({
-      keywords:options.keywords||""
+      keywords: options.keywords || ""
     });
-    if(options.keywords){
+    if (options.keywords) {
       wx.request({
-        url: this.data.host+'/products/search?keywords='+options.keywords,
-        success:res=>{
-         // console.log(res);
-           if(res.data[0].code==0){
-              wx.showToast({
-                title: '没有相关商品',
-                icon:"none"
-              })
-           }else{
-             var shopListGroup = res.data;
-             var  len=shopListGroup.length;
-              for(var i=0;i<len;i++){
-                shopListGroup[i].img_url = shopListGroup[i].imgUrls.split("#")[0];
-              }
+        url: this.data.host + '/products/search?keywords=' + options.keywords,
+        success: res => {
+          // console.log(res);
+          if (res.data[0].code == 0) {
+            wx.showToast({
+              title: '没有相关商品',
+              icon: "none"
+            })
+          } else {
+            var shopListGroup = res.data;
+            var len = shopListGroup.length;
+            for (var i = 0; i < len; i++) {
+              shopListGroup[i].img_url = shopListGroup[i].imgUrls.split("#")[0];
+            }
 
-             this.setData({
-               shopListGroup,
-               repeat: options.keywords
-             });
-           }
-            
+            this.setData({
+              shopListGroup,
+              repeat: options.keywords
+            });
+            this.changeRankList();
+          }
+
         }
       })
     }
   },
   //输入框获取焦点
-  bindButtonTap: function () {
+  bindButtonTap: function() {
     this.setData({
       focus: true
     })
@@ -57,7 +59,7 @@ Page({
     var keywords = event.detail.keywords || this.data.keywords;
     var historyList = wx.getStorageSync('searchData') || [];
     if (this.data.repeat == keywords) {
-         return
+      return
     }
     if (historyList.length > 0) {
       this.setData({
@@ -75,7 +77,7 @@ Page({
       })
       return
     }
-    
+
     wx.navigateTo({
       url: '../search/search?keywords=' + keywords,
     })
@@ -94,17 +96,29 @@ Page({
       historyStatus: false
     });
   },
+  changeRankList(event) {
+    var e=event;
+    if(e){
+      var rank = e.currentTarget.dataset.rank;
+    }else{
+       var rank=1;
+    }
+    
+    this.setData({
+      rank
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     this.setData({
       repeat: this.data.keywords
     })
@@ -113,35 +127,35 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

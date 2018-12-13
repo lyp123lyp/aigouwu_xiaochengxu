@@ -1,2 +1,27 @@
-<!--pages/classify/classify.wxml-->
-<text>pages/classify/classify.wxml</text>
+<view class="     flex bgWhite">
+  <view class="navs aside">
+    <scroll-view scroll-y="true" 
+     class="scrollBox" scroll-with-animation="true">
+      <view wx:for="{{navList}}" wx:key="index">
+        <text id="{{index+1}}" class="{{curStatus==index+1?'active':''}} navItem" data-fid="{{item.fid}}" bindtap="changeContentList">{{item.fname}}</text>
+      </view>
+    </scroll-view>
+  </view>
+  <view class="contents">
+  <block wx:for='{{contentList}}' wx:key="index">
+    <view class="content-group">
+      <view class="head">
+          {{item.sname}}
+      </view>
+      <view class="items flex">
+      <block wx:for="{{item.keywords}}" wx:key="index">     
+          <navigator url="../search/search?keywords={{item}}" class="navi" hover-class="none">
+          <view class="keyword bgWhite">{{item}}</view>
+          </navigator>
+      </block>
+      </view>
+    </view>
+  </block>
+
+  </view>
+</view>

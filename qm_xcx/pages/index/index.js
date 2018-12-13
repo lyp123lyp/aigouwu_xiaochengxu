@@ -89,7 +89,7 @@ Page({
             jpList1:arr.slice(6,9),
             jpList2:arr.slice(9,11),
             wsgList:arr.slice(11,14),
-            rmjxList:arr.slice(14,18)
+            rmjxList:arr.slice(14)
           });
         
         }

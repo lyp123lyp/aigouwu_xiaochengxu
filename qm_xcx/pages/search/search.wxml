@@ -9,19 +9,19 @@
 </view>
 <!-- 商品排列栏目 -->
 <view class="flex splm">
-  <view class='lmplList'>
+  <view class='lmplList'data-rank='1' bindtap="changeRankList">
     <text>新品</text>
   </view>
-  <view class='lmplList'>
+  <view class='lmplList' data-rank="2" bindtap="changeRankList">
     <text>综合</text>
   </view>
-  <view class='lmplList flex'>
+  <view class='lmplList flex' data-rank="3" bindtap="changeRankList">
     <text>销量</text>
-    <image src="{{host}}/images/red.png"></image>
+    <image  src="{{host}}/images/{{rank==3?'red.png':'dark.png'}}"></image>
   </view>
-  <view class='lmplList flex'>
+  <view class='lmplList flex' data-rank="4" bindtap="changeRankList">
     <text>价格</text>
-    <image src="{{host}}/images/dark.png"></image>
+    <image src="{{host}}/images/{{rank==4?'red.png':'dark.png'}}"></image>
   </view>
 </view>
 <!-- 商品列表 -->

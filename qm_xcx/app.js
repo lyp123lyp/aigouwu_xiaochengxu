@@ -95,13 +95,13 @@ App({
           // console.log(res);
           var orderList = res.data;
           //设置请求返回的数据
-          _this.setData({
-            orderList
-          });
+          // _this.setData({
+          //   orderList
+          // });
           //console.log(orderList);
           var orderStr = JSON.stringify(orderList);
           wx.setStorageSync("orderList", orderStr);
-          open();
+          open(orderList);
         }
       })
     });
