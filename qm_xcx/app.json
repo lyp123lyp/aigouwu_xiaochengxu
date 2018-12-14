@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/login/login",
     "pages/index/index",
     "pages/cart/cart",
     "pages/detail/detail",
@@ -12,9 +13,9 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#EC5151",
     "navigationBarTitleText": "爱购物",
-    "navigationBarTextStyle": "black",
+    "navigationBarTextStyle": "white",
     "onReachBottomDistance": "100"
   },
   "tabBar": {

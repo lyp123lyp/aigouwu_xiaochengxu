@@ -1,0 +1,33 @@
+/* pages/login/login.wxss */
+.header {
+    
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+    /* width: 650rpx; */
+    /* height: 300rpx; */
+    line-height: 450rpx;
+    margin-bottom: 90rpx;
+}
+ 
+.header image {
+  margin-top: 80rpx;
+    width: 500rpx;
+    height: 400rpx;
+}
+ 
+.content {
+    margin-left: 50rpx;
+    margin-bottom: 90rpx;
+}
+ 
+.content text {
+    display: block;
+    color: #9d9d9d;
+    margin-top: 40rpx;
+}
+ 
+.bottom {
+    border-radius: 80rpx;
+    margin: 70rpx 50rpx;
+    font-size: 35rpx;
+}

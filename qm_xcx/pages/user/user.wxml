@@ -2,8 +2,8 @@
 <view class="head">
   <image src="{{host}}/picture/userbg.jpg" mode="center" class="bgImg"></image>
   <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="getInfoBtn" type="primary"> 点击微信授权 </button>
-    <view class="info" wx:else>
+    
+    <view class="info">
       <image class="userinfo-avatar fl_l" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
       <text class="fl_l">{{userInfo.nickName}}</text>
     </view>
