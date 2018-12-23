@@ -60,11 +60,11 @@ Page({
               if (app.userInfoReadyCallback) {
                 app.userInfoReadyCallback(res)
                 wx.switchTab({
-                  url: '../index/index'
+                 url: '../index/index'
                 })
               }
               wx.switchTab({
-                url: '../index/index'
+               url: '../index/index'
               })
             }
           })

@@ -1,23 +1,17 @@
 /* pages/login/login.wxss */
 .header {
-    
-    border-bottom: 1px solid #ccc;
     text-align: center;
     /* width: 650rpx; */
     /* height: 300rpx; */
-    line-height: 450rpx;
-    margin-bottom: 90rpx;
 }
  
 .header image {
-  margin-top: 80rpx;
-    width: 500rpx;
-    height: 400rpx;
+    width: 100%;
+    vertical-align:top;
 }
  
 .content {
-    margin-left: 50rpx;
-    margin-bottom: 90rpx;
+    margin: 50rpx 0 90rpx 50rpx;
 }
  
 .content text {
